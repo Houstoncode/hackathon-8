@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/convert', [\App\Http\Controllers\ConvertController::class, 'convert']);
 
     Route::get('/user', function (Request $request) {
-        return $request->user();
+        return response()->json(\App\Http\Resources\UserResource::make($request->user()));
     });
 
     Route::get('/files/my', [\App\Http\Controllers\FileController::class, 'index']);

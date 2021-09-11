@@ -22,6 +22,10 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
         'name', 'email', 'password',
     ];
 
+    public function files() {
+        return $this->belongsTo(File::class, 'id', 'user_id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
