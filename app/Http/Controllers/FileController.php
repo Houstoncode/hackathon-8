@@ -15,8 +15,12 @@ class FileController extends Controller
         return response()->json(['data' => ['items' => FileResource::collection($files)]]);
     }
 
-    public function show(Request $request) {
-        $file = File::query()->where('code', '=', $request->get('code'))->first();
+    public function last() {
+        $files = File::query()->where('user_id', '=', Auth::user()->id)->sor
+    }
+
+    public function show(Request $request, $code) {
+        $file = File::query()->where('code', '=', $code)->first();
 
         return response()->json(['data' => $file]);
     }
