@@ -7,7 +7,7 @@
         <input type="file" />
         <img src="img/download-icon.svg" alt="" />
       </div>
-      <button class="modal-download__btn" disabled @click="ConvertToHTML">
+      <button class="modal-download__btn"  @click="ConvertToHTML">
         Проверить
       </button>
     </div>
