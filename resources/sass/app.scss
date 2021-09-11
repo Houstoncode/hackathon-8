@@ -513,3 +513,16 @@ button {
     }
   }
 }
+
+.dock {
+    width: 900px;
+    background-color: #fff;
+    padding: 50px 100px;
+    table {
+        margin: 0 !important;
+        width: 100%;
+    }
+    tbody {
+        width: 100%;
+    }
+}
