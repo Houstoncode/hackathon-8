@@ -325,6 +325,10 @@ button {
     align-items: center;
     justify-content: center;
     margin: 70px auto 0 auto;
+    transition: all 0.4s;
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -480,12 +484,37 @@ button {
       }
     }
     &-bar {
+      position: relative;
       &_submenu {
-        display: none;
+        position: absolute;
+        background: #ffffff;
+        border-radius: 0 0 15px 15px;
+        top: 100%;
+        width: 100%;
+        padding: 10px 20px 30px 20px;
+        display: flex;
+        flex-direction: column;
+        transition: all .4s;
+        pointer-events: none;
+        opacity: 0;
+      }
+      &_btn {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 29px;
+        color: #111111;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 10px;
+        text-align: left;
+        &:last-child {
+            margin-bottom: 0;
+        }
       }
       &_name {
         font-size: 24px;
         line-height: 29px;
+        transition: all .4s;
       }
       &_email {
         font-weight: 300;
@@ -493,36 +522,57 @@ button {
         line-height: 22px;
         margin-top: 5px;
         opacity: 0.7;
+        transition: all .4s;
       }
       &_top {
-          display: flex;
-          align-items: center;
+        display: flex;
+        align-items: center;
+        padding: 5px 20px;
+        transition: all .4s;
+        border-radius: 15px 15px 0 0;
       }
       &_right {
-          width: 80px;
-          height: 80px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-left: 15px;
+        cursor: pointer;
+        img {
+          width: 100%;
+          height: 100%;
           border-radius: 50%;
-          margin-left: 15px;
-          cursor: pointer;
-          img {
-              width: 100%;
-              height: 100%;
-              border-radius: 50%;
-          }
+        }
       }
     }
   }
 }
 
 .dock {
-    width: 900px;
-    background-color: #fff;
-    padding: 50px 100px;
-    table {
-        margin: 0 !important;
-        width: 100%;
-    }
-    tbody {
-        width: 100%;
-    }
+  width: 900px;
+  background-color: #fff;
+  padding: 50px 100px;
+  table {
+    margin: 0 !important;
+    width: 100%;
+  }
+  tbody {
+    width: 100%;
+  }
+}
+
+.header-submenu-open {
+  .header__wrapper-bar_submenu {
+    opacity: 1;
+    z-index: 10;
+    pointer-events: all;
+  }
+  .header__wrapper-bar_top {
+      background-color: #fff;
+  }
+  .header__wrapper-bar_name {
+      color: black;
+  }
+  .header__wrapper-bar_email {
+      color: rgba(0, 0, 0, 0.5);
+  }
 }

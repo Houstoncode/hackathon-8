@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <loading ref="loading" />
+    <loading ref="loading" v-show="!layout" />
 
     <transition name="page" mode="out-in">
       <component :is="layout" v-if="layout" />
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Loading from './Loading'
+import Loading from './Prealoder.vue'
 
 // Load layout components dynamically.
 const requireContext = require.context('~/layouts', false, /.*\.vue$/)
@@ -42,10 +42,6 @@ export default {
       title: appName,
       titleTemplate: `%s · ${appName}`
     }
-  },
-
-  mounted () {
-    this.$loading = this.$refs.loading
   },
 
   methods: {

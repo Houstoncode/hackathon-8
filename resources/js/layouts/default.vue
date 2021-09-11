@@ -1,5 +1,4 @@
 <template>
- 
   <div class="main-layout">
     <Header />
 
@@ -11,14 +10,12 @@
 
 <script>
 import Header from "../components/Header";
-import Loader from "../components/Prealoder.vue";
 
 export default {
   name: "MainLayout",
 
   components: {
     Header,
-    Loader
   }
 };
 </script>

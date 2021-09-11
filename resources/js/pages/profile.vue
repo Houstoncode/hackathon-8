@@ -8,7 +8,8 @@
             <input type="text" placeholder="Поиск документов..." />
           </div>
           <div class="profile__wrapper-block">
-            <router-link to="/document"
+            <router-link
+              to="/document"
               class="profile__wrapper-block_item"
               v-for="(item, idx) in documents"
               :key="idx"
@@ -38,21 +39,21 @@
         </div>
 
         <div class="profile__wrapper-right">
-            <div class="profile__wrapper-title">Об аккаунте</div>
-            <div class="profile__wrapper-info">
-                <div class="profile__wrapper-info_block">
-                    <div class="profile__wrapper-info_title">Имя</div>
-                    <div class="profile__wrapper-info_text">Иван</div>
-                </div>
-                 <div class="profile__wrapper-info_block">
-                    <div class="profile__wrapper-info_title">Фамилия</div>
-                    <div class="profile__wrapper-info_text">Иванов</div>
-                </div>
-                 <div class="profile__wrapper-info_block">
-                    <div class="profile__wrapper-info_title">E-mail</div>
-                    <div class="profile__wrapper-info_text">ivan.ivanov.yandex.ru</div>
-                </div>
+          <div class="profile__wrapper-title">Об аккаунте</div>
+          <div class="profile__wrapper-info">
+            <div class="profile__wrapper-info_block">
+              <div class="profile__wrapper-info_title">Имя</div>
+              <div class="profile__wrapper-info_text">{{ user.name }}</div>
             </div>
+            <div class="profile__wrapper-info_block">
+              <div class="profile__wrapper-info_title">Фамилия</div>
+              <div class="profile__wrapper-info_text">Иванов</div>
+            </div>
+            <div class="profile__wrapper-info_block">
+              <div class="profile__wrapper-info_title">E-mail</div>
+              <div class="profile__wrapper-info_text">{{ user.email }}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -60,7 +61,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
+  computed: {
+    ...mapState("auth", ["user"])
+  },
   data() {
     return {
       documents: [

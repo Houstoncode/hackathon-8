@@ -52,9 +52,9 @@
             <div class="form-group row">
               <div class="col-md-7 offset-md-3 d-flex">
                 <!-- Submit Button -->
-                <v-button class="button-submit" :loading="form.busy">
+                <button class="button-submit" :loading="form.busy">
                   Войти
-                </v-button>
+                </button>
 
                 <!-- GitHub Login Button -->
                 <login-with-github />
