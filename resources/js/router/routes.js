@@ -6,7 +6,7 @@ function page(path) {
 }
 
 export default [
-  { path: "/", name: "welcome", component: page("welcome.vue") },
+  { path: "/", name: "home", component: page("home.vue") },
 
   { path: "/login", name: "login", component: page("auth/login.vue") },
   { path: "/register", name: "register", component: page("auth/register.vue") },
@@ -29,11 +29,6 @@ export default [
     path: "/profile",
     name: "profile",
     component: page("profile.vue")
-  },
-  {
-    path: "/document",
-    name: "document",
-    component: page("document.vue")
   },
   {
     path: "/email/resend",

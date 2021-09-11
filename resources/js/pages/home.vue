@@ -36,7 +36,7 @@
             </div>
             <div class="home__wrapper-document_block">
               <router-link
-                to="/"
+                to="/document"
                 class="home__wrapper-document_item"
                 v-for="(item, idx) in lastFiles"
                 :key="idx"

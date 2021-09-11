@@ -8,7 +8,7 @@
             <input type="text" placeholder="Поиск документов..." />
           </div>
           <div class="profile__wrapper-block">
-            <router-link to=""
+            <router-link to="/document"
               class="profile__wrapper-block_item"
               v-for="(item, idx) in documents"
               :key="idx"

@@ -7,7 +7,24 @@
         <input type="file" />
         <img src="img/download-icon.svg" alt="" />
       </div>
-      <button class="modal-download__btn">Обработать</button>
+      <button class="modal-download__btn" @click="ConvertToHTML">
+        Обработать
+      </button>
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions("document",['getConvertToHTML']),
+    async ConvertToHTML() {
+      await this.getConvertToHTML()
+
+      this.$router.push({path: '/document'})
+    }
+  }
+};
+</script>
