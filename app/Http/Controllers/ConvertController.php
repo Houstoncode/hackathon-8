@@ -6,6 +6,7 @@ use CloudConvert\Laravel\Facades\CloudConvert;
 use CloudConvert\Models\Job;
 use CloudConvert\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,7 +27,7 @@ class ConvertController extends Controller
                 ->setTag($name.'job')
                 ->addTask(
                     (new Task('import/url', $name))
-                        ->set('url', 'https://s664sas.storage.yandex.net/rdisk/1c448ec0e10c549939f6239dc2c4032ab0a3ea08d79c859b631ab742c6d724eb/613d225f/q8p2Wzs8ZbNnVGWqhtAfA5XLKPsUU5JHMPRqBkf-kWb0Czm6WSKMjr398uOsXJSfgEupVi5RfJDHr8M7QHCYvQ==?uid=0&filename=Expertise_Text-%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD.pdf&disposition=attachment&hash=DcCtZkpJ79lsNl2I2tun7oNqMpR2TCDHP/4cueiKwFu27sSnujrj0H7pqnYOf1%2Bhq/J6bpmRyOJonT3VoXnDag%3D%3D&limit=0&content_type=application%2Fpdf&owner_uid=996764292&fsize=150081&hid=ffcdfb37565e15ab4a4a20076f4df8ea&media_type=document&tknv=v2&rtoken=cqKLFnLgMZC8&force_default=no&ycrid=na-d8f35fc215d8805de0c699d26e4c4b90-downloader5e&ts=5cbbf15b615c0&s=08e99b062e09113052ea93806007b7b6bf43a5fb8ef2679fbe24010ccf8e195b&pb=U2FsdGVkX1_AxN4aBn2a_4ei4pZfVtVYpgxkb6yyGxLPD9KuNJcOvQ5oyhTaoG_DIvHipzFtIntBib24gtjz8w7Hl3KAgmwo0qd6ywxOFDs')
+                        ->set('url', 'https://s664sas.storage.yandex.net/rdisk/af451ed73beaa38f9a5364d1df4c802274bc2889820f069ae72fc2143139b002/613d5ce5/q8p2Wzs8ZbNnVGWqhtAfA5XLKPsUU5JHMPRqBkf-kWb0Czm6WSKMjr398uOsXJSfgEupVi5RfJDHr8M7QHCYvQ==?uid=996764292&filename=Expertise_Text-%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD.pdf&disposition=attachment&hash=&limit=0&content_type=application%2Fpdf&owner_uid=996764292&fsize=150081&hid=ffcdfb37565e15ab4a4a20076f4df8ea&media_type=document&tknv=v2&etag=c6d39e5edc385f45264c28afb59cb759&rtoken=taWPQlAAguVh&force_default=yes&ycrid=na-eee89816fa07d3213e9bc7d8fef7885d-downloader24f&ts=5cbc292b54340&s=4ae4a7ae5be05be11da6f626bececc04fd6ae643c65b0c22905477d79a2d14e5&pb=U2FsdGVkX1-QybA27NqLgtx9nqvFopZ0tfcE7q6pgjiWaeKdGhwiaH9MI_L-lhcmcahyCx6uQVKfY7Votr1PBqr5HYaSeTsA91Rz1mDJt4w')
                 )
                 ->addTask(
                     (new Task('convert', $name.'convert'))
@@ -62,7 +63,7 @@ class ConvertController extends Controller
 
         $crawler = $crawler->filter('body');
 
-        $file = \App\File::query()->create(['name' => $name, 'html' => $crawler->html(), 'code' => Str::random(8)]);
+        $file = \App\File::query()->create(['name' => $name, 'html' => $crawler->html(), 'code' => Str::random(8), 'user_id' => Auth::user()->id]);
 
         return response()->json(['data' => $file]);
     }

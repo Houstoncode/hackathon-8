@@ -23,6 +23,9 @@ Route::group(['middleware' => 'auth:api'], function () {
         return $request->user();
     });
 
+    Route::get('/files/my', [\App\Http\Controllers\FileController::class, 'index']);
+    Route::post('/files/find', [\App\Http\Controllers\FileController::class, 'show');
+
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 });
