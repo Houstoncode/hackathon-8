@@ -16,7 +16,7 @@ class FileController extends Controller
     }
 
     public function last() {
-        $files = File::query()->where('user_id', '=', Auth::user()->id)->sor
+//        $files = File::query()->where('user_id', '=', Auth::user()->id)
     }
 
     public function show(Request $request, $code) {
