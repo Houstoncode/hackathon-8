@@ -63,6 +63,6 @@ class ConvertController extends Controller
 
         $crawler = $crawler->filter('body');
 
-
+        return response()->json(['data' => ['html' => $crawler->html()]]);
     }
 }
