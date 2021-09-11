@@ -17,9 +17,9 @@ class ConvertController extends Controller
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function convert(Request $request) {
-        $file = $request->file('file')->store('uploads', ['disk' => 'public']);
+//        $file = $request->file('file')->store('uploads', ['disk' => 'public']);
 
-        $testFile = Storage::disk('public')->get($file);
+//        $testFile = Storage::disk('public')->get($file);
         $name = \Illuminate\Support\Str::random(32);
 
         $job = CloudConvert::jobs()->create(
