@@ -20,6 +20,5 @@ export default [
     name: "document",
     component: page("document.vue")
   },
-  { path: "/home", name: "home", component: page("home.vue") },
   { path: "*", component: page("errors/404.vue") }
 ];

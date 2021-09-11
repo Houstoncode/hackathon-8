@@ -44,6 +44,7 @@
                   red: item.currentError >= 20,
                   yellow: item.currentError <= 20
                 }"
+                @click="() => nextPageDocument(event, item.code)"
               >
                 <div class="home__wrapper-document_title">{{ item.title }}</div>
                 <div class="home__wrapper-document_img">
@@ -91,6 +92,7 @@
 
 <script>
 import modalDownload from "../components/ModalDownload.vue";
+import { mapActions } from 'vuex'
 
 export default {
   middleware: "auth",
@@ -100,21 +102,14 @@ export default {
   data() {
     return {
       isOpen: false,
-      lastFiles: [
-        {
-          title: "Право на хату",
-          currentError: 5
-        },
-        {
-          title: "Право на хату",
-          currentError: 10
-        },
-        {
-          title: "Право на хату",
-          currentError: 51
-        }
-      ]
+      lastFiles: []
     };
+  },
+  methods: {
+    ...mapActions("document", ["getAllDocuments"])
+  },
+  async mounted() {
+    this.lastFiles = await this.getAllDocuments();
   },
   components: {
     modalDownload

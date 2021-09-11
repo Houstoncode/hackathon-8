@@ -17,6 +17,9 @@ export const actions = {
   },
   async getDocument({commit}, code) {
     const {data: {data: {html}}} = await axios.get(`/api/files/find/${code}`)
+  },
+  async getAllDocuments({commit}) {
+    const {data: {data: {html}}} = await axios.get(`/api/files/me`)
   }
 };
 

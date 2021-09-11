@@ -2,7 +2,7 @@
   <header class="header" :class="{ 'header-submenu-open': isOpenSubmenu }">
     <div class="container">
       <div class="header__wrapper">
-        <router-link to="/home" class="header__wrapper-logo">
+        <router-link to="/" class="header__wrapper-logo">
           <img src="img/logo-icon.svg" alt="" />
         </router-link>
         <div class="header__wrapper-bar">
