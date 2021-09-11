@@ -8,7 +8,7 @@ use CloudConvert\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Psy\Util\Str;
+use Illuminate\Support\Str;
 use Symfony\Component\DomCrawler\Crawler;
 
 class ConvertController extends Controller
@@ -18,7 +18,6 @@ class ConvertController extends Controller
      */
     public function convert(Request $request) {
 //        $file = $request->file('file')->store('uploads', ['disk' => 'public']);
-
 //        $testFile = Storage::disk('public')->get($file);
         $name = \Illuminate\Support\Str::random(32);
 
@@ -52,7 +51,7 @@ class ConvertController extends Controller
         $url = '';
 
         foreach ($job->getExportUrls() as $file) {
-            if(\Illuminate\Support\Str::contains($file->filename, '.html')) {
+            if(Str::contains($file->filename, '.html')) {
                 $url = $file->url;
             }
         }
@@ -63,6 +62,8 @@ class ConvertController extends Controller
 
         $crawler = $crawler->filter('body');
 
-        return response()->json(['data' => ['html' => $crawler->html()]]);
+        $file = \App\File::query()->create(['name' => $name, 'html' => $crawler->html(), 'code' => Str::random(8)]);
+
+        return response()->json(['data' => $file]);
     }
 }

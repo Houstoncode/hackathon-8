@@ -10,6 +10,7 @@ export default [
 
   { path: "/login", name: "login", component: page("auth/login.vue") },
   { path: "/register", name: "register", component: page("auth/register.vue") },
+  {path: "/document", name: "document", component: page('document.vue')},
   {
     path: "/password/reset",
     name: "password.request",
