@@ -26,6 +26,16 @@ export default [
     component: page("auth/verification/verify.vue")
   },
   {
+    path: "/profile",
+    name: "profile",
+    component: page("profile.vue")
+  },
+  {
+    path: "/document",
+    name: "document",
+    component: page("document.vue")
+  },
+  {
     path: "/email/resend",
     name: "verification.resend",
     component: page("auth/verification/resend.vue")

@@ -35,26 +35,24 @@
               Последние проверенные документы
             </div>
             <div class="home__wrapper-document_block">
-              <div class="home__wrapper-document_item">
-                <div class="home__wrapper-document_title">Право на хату</div>
+              <router-link
+                to="/"
+                class="home__wrapper-document_item"
+                v-for="(item, idx) in lastFiles"
+                :key="idx"
+                :class="{
+                  red: item.currentError >= 20,
+                  yellow: item.currentError <= 20
+                }"
+              >
+                <div class="home__wrapper-document_title">{{ item.title }}</div>
                 <div class="home__wrapper-document_img">
                   <img src="img/document-icon.svg" alt="" />
+                  <div class="home__wrapper-document_error">
+                    {{ item.currentError }}
+                  </div>
                 </div>
-              </div>
-
-              <div class="home__wrapper-document_item">
-                <div class="home__wrapper-document_title">Акт Детсада</div>
-                <div class="home__wrapper-document_img">
-                  <img src="img/document-icon.svg" alt="" />
-                </div>
-              </div>
-
-              <div class="home__wrapper-document_item">
-                <div class="home__wrapper-document_title">Право на хату</div>
-                <div class="home__wrapper-document_img">
-                  <img src="img/document-icon.svg" alt="" />
-                </div>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -80,7 +78,9 @@
             Наша система выдаст все несостыковки в документе с ссылками на
             постановления и указы правительства РФ
           </div>
-          <button class="home__wrapper-btn" @click="isOpen = !isOpen">Загрузить файл и проверить</button>
+          <button class="home__wrapper-btn" @click="isOpen = !isOpen">
+            Загрузить файл и проверить
+          </button>
         </div>
       </div>
     </div>
@@ -99,7 +99,21 @@ export default {
   },
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      lastFiles: [
+        {
+          title: "Право на хату",
+          currentError: 5
+        },
+        {
+          title: "Право на хату",
+          currentError: 10
+        },
+        {
+          title: "Право на хату",
+          currentError: 51
+        }
+      ]
     };
   },
   components: {

@@ -1,5 +1,7 @@
 <template>
   <div class="main-layout">
+    <Header />
+
     <div class="container mt-4">
       <child />
     </div>
@@ -7,13 +9,13 @@
 </template>
 
 <script>
-import Navbar from '~/components/Navbar'
+import Header from '../components/Header'
 
 export default {
   name: 'MainLayout',
 
   components: {
-    Navbar
+    Header
   }
 }
 </script>
