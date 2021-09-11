@@ -1,20 +1,27 @@
-import * as types from '../mutation-types'
-import axios from 'axios'
+import * as types from "../mutation-types";
+import axios from "axios";
 
 export const state = {
-    documentHTML: '' 
-}
+  documentHTML: ""
+};
 
 export const actions = {
-    async getConvertToHTML ({ commit }) {
-        const { data: { data: { html }} } = await axios.post('/api/convert')
-        
-        commit(types.SET_HTML, html)
-      }, 
-}
+  async getConvertToHTML({ commit }) {
+    const {
+      data: {
+        data: { html }
+      }
+    } = await axios.post("/api/convert");
+
+    commit(types.SET_HTML, html);
+  },
+  async getDocument({commit}, code) {
+    const {data: {data: {html}}} = await axios.get(`/api/files/find/${code}`)
+  }
+};
 
 export const mutations = {
-    [types.SET_HTML] (state, html) {
-      state.documentHTML = html
-    }, 
-}
+  [types.SET_HTML](state, html) {
+    state.documentHTML = html;
+  }
+};

@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   computed: {
@@ -69,29 +69,14 @@ export default {
   },
   data() {
     return {
-      documents: [
-        {
-          title: "Право на очередность жилья",
-          currentError: 5
-        },
-        {
-          title: "Право на очередность жилья",
-          currentError: 5
-        },
-        {
-          title: "Право на очередность жилья",
-          currentError: 5
-        },
-        {
-          title: "Право на очередность жилья",
-          currentError: 5
-        },
-        {
-          title: "Право на очередность жилья",
-          currentError: 5
-        }
-      ]
+      documents: []
     };
+  },
+  methods: {
+    ...mapActions('document', ['getDocument'])
+  },
+  mounted() {
+    this.documents = this.getDocument('qkIkZ9bq');
   }
 };
 </script>

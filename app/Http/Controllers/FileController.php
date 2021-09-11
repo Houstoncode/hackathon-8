@@ -20,6 +20,7 @@ class FileController extends Controller
     }
 
     public function show(Request $request, $code) {
+
         $file = File::query()->where('code', '=', $code)->first();
 
         return response()->json(['data' => $file]);
