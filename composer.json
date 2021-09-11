@@ -6,11 +6,14 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
+        "cloudconvert/cloudconvert-laravel": "^1.1",
         "fideloper/proxy": "^4.0",
         "laravel/dusk": "^5.1",
         "laravel/framework": "5.8.*",
         "laravel/socialite": "^4.0",
         "laravel/tinker": "^1.0",
+        "php-http/guzzle6-adapter": "^2.0",
+        "symfony/dom-crawler": "^5.3",
         "tymon/jwt-auth": "^1.0.0-rc.4.1"
     },
     "require-dev": {
