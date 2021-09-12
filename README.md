@@ -7,7 +7,7 @@ Composer 1.10.1 и выше
 OpenServer
 
 # Установка
-Зайти в папку domains в OpenServer
+Зайти в папку domains в OpenServer </br>
 Выполнить команду git clone https://github.com/Houstoncode/hackathon-8.git
 Выполнить следующие команды:</br>
 cd hackathon-8 </br>
