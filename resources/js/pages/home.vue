@@ -35,25 +35,27 @@
               Последние проверенные документы
             </div>
             <div class="home__wrapper-document_block">
-              <router-link
-                to="/document"
+              <div
                 class="home__wrapper-document_item"
-                v-for="(item, idx) in lastFiles"
+                v-for="(item, idx) in lastFiles.slice(0, 3)"
                 :key="idx"
                 :class="{
                   red: item.currentError >= 20,
                   yellow: item.currentError <= 20
                 }"
-                @click="() => nextPageDocument(event, item.code)"
+                @click.prevent="() => nextPageDocument(item.code)"
               >
-                <div class="home__wrapper-document_title">{{ item.title }}</div>
+                <div class="home__wrapper-document_title">{{ item.name }}</div>
                 <div class="home__wrapper-document_img">
                   <img src="img/document-icon.svg" alt="" />
                   <div class="home__wrapper-document_error">
-                    {{ item.currentError }}
+                   <span v-if="item.currentError">
+                      {{ item.currentError }}</span
+                    >
+                    <span v-if="!item.currentError">0</span>
                   </div>
                 </div>
-              </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -92,7 +94,7 @@
 
 <script>
 import modalDownload from "../components/ModalDownload.vue";
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   middleware: "auth",
@@ -106,7 +108,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions("document", ["getAllDocuments"])
+    ...mapActions("document", ["getAllDocuments"]),
+    async nextPageDocument(code) {
+      this.$router.push({ params: { code }, name: "document" });
+    }
   },
   async mounted() {
     this.lastFiles = await this.getAllDocuments();

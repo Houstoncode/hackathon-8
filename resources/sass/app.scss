@@ -25,6 +25,7 @@ html {
   max-width: 1550px;
   padding: 0 15px;
   margin: 0 auto;
+  height: 100%;
 }
 
 button {
@@ -169,11 +170,17 @@ button {
     }
     &-document {
       margin-top: 50px;
-      &_title {
+      overflow: hidden;
+      &_title {  
+        overflow: hidden;
+        width: 100%;
+        display: inline;
         font-size: 24px;
         line-height: 29px;
         font-weight: 500;
         color: #ffffff;
+        text-overflow: ellipsis;
+
       }
       &_block {
         background: linear-gradient(269.89deg, #b23ac6 5.21%, #603ed9 99.9%);
@@ -185,6 +192,9 @@ button {
       }
       &_item {
         text-align: center;
+        width: 30%;
+        cursor: pointer;
+        overflow: hidden;
       }
       &_img {
         margin-top: 10px;
@@ -207,8 +217,10 @@ button {
         font-size: 20px;
         color: #382f2f;
         border-radius: 50%;
-        bottom: -15px;
-        right: 10px;
+        bottom: 0px;
+        right: 0px;
+        background: #fff;
+        border: 1px solid black;
       }
       .red {
         .home__wrapper-document_error {
@@ -334,12 +346,13 @@ button {
 
 .modal__filter {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
+  height: 100vh;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   filter: blur(-15px);
+  overflow: hidden;
 }
 
 .profile {
@@ -385,6 +398,7 @@ button {
         padding: 20px 13px;
         color: black;
         display: flex;
+        cursor: pointer;
         .red {
           background: #ff0c0c;
           color: #fff;
@@ -435,7 +449,7 @@ button {
         font-size: 20px;
         color: #382f2f;
         border-radius: 50%;
-        margin-left: 15px;
+        margin-left: 5px;
       }
     }
     &-right {
@@ -478,9 +492,10 @@ button {
     align-items: center;
     width: 100%;
     &-logo {
-      height: 60px;
-      img {
+      height: 70px;
+      svg {
         height: 100%;
+        margin-left: -20px;
       }
     }
     &-bar {
@@ -579,4 +594,16 @@ button {
 
 .document__wrapper-error {
     color: #fff;
+}
+
+.document {
+    padding: 20px 0;
+    min-height: 300px;
+    .container {
+        min-height: 300px;
+    }
+    &__wrapper {
+        min-height: 300px;
+        position: relative;
+    }
 }

@@ -8,17 +8,18 @@
             <input type="text" placeholder="Поиск документов..." />
           </div>
           <div class="profile__wrapper-block">
-            <router-link
+            <div
               to="/document"
               class="profile__wrapper-block_item"
               v-for="(item, idx) in documents"
               :key="idx"
+              @click="() => nextPageDocument(item.code)"
             >
               <div class="profile__wrapper-block_img">
                 <img src="img/document-black-icon.svg" alt="" />
               </div>
               <div class="profile__wrapper-block_info">
-                <div class="profile__wrapper-block_title">{{ item.title }}</div>
+                <div class="profile__wrapper-block_title">{{ item.name }}</div>
                 <div class="profile__wrapper-block_result">
                   <div class="profile__wrapper-block_text">
                     Обнаружено недочетов:
@@ -30,11 +31,14 @@
                       yellow: item.currentError <= 20
                     }"
                   >
-                    {{ item.currentError }}
+                    <span v-if="item.currentError">
+                      {{ item.currentError }}</span
+                    >
+                    <span v-if="!item.currentError">0</span>
                   </div>
                 </div>
               </div>
-            </router-link>
+            </div>
           </div>
         </div>
 
@@ -73,10 +77,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions('document', ['getDocument'])
+    ...mapActions("document", ["getAllDocuments"]),
+    async nextPageDocument(code) {
+      this.$router.push({ params: { code }, name: "document" });
+    }
   },
-  mounted() {
-    this.documents = this.getDocument('qkIkZ9bq');
+  async mounted() {
+    this.documents = await this.getAllDocuments();
   }
 };
 </script>
