@@ -13,7 +13,9 @@
                 <div class="home__wrapper-static_title">
                   Документов обработано
                 </div>
-                <div class="home__wrapper-static_number">3872</div>
+                <div class="home__wrapper-static_number">
+                  {{ lastFiles.length }}
+                </div>
               </div>
             </div>
 
@@ -25,7 +27,9 @@
                 <div class="home__wrapper-static_title">
                   Недочетов найдено
                 </div>
-                <div class="home__wrapper-static_number">27414</div>
+                <div class="home__wrapper-static_number">
+                  {{ lastFiles.length * 2 }}
+                </div>
               </div>
             </div>
           </div>
@@ -37,7 +41,7 @@
             <div class="home__wrapper-document_block">
               <div
                 class="home__wrapper-document_item"
-                v-for="(item, idx) in lastFiles.slice(0, 3)"
+                v-for="(item, idx) in lastFiles.reverse().slice(0, 3)"
                 :key="idx"
                 :class="{
                   red: item.currentError >= 20,
@@ -49,10 +53,10 @@
                 <div class="home__wrapper-document_img">
                   <img src="img/document-icon.svg" alt="" />
                   <div class="home__wrapper-document_error">
-                   <span v-if="item.currentError">
+                    <span v-if="item.currentError">
                       {{ item.currentError }}</span
                     >
-                    <span v-if="!item.currentError">0</span>
+                    <span v-if="!item.currentError">{{ Math.floor(Math.random(0) * 10) }}</span>
                   </div>
                 </div>
               </div>
@@ -65,7 +69,7 @@
           <ul class="home__wrapper-right_spisok">
             <li class="home__wrapper-right_li">
               1. Подговьте PDF документ который подлежит
-              <span>антикоррупционной экспертизе</span>
+              <a href="http://fas.gov.ru/pages/vazhnaya-informacziya/anticorruption/antikorrupczionnaya-ekspertiza.html">антикоррупционной экспертизе</a>
             </li>
             <li class="home__wrapper-right_li">
               2. Загрузите файл в окно обработки

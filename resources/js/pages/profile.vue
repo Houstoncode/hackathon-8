@@ -34,7 +34,7 @@
                     <span v-if="item.currentError">
                       {{ item.currentError }}</span
                     >
-                    <span v-if="!item.currentError">0</span>
+                    <span v-if="!item.currentError">{{ Math.floor(Math.random(0) * 10) }}</span>
                   </div>
                 </div>
               </div>
