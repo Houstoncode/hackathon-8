@@ -11,3 +11,4 @@ export const SET_LOCALE = 'SET_LOCALE'
 
 // document.js
 export const SET_HTML = 'SET_HTML'
+export const SET_CODE = 'SET_CODE'

@@ -13,7 +13,9 @@
                 <div class="home__wrapper-static_title">
                   Документов обработано
                 </div>
-                <div class="home__wrapper-static_number">3872</div>
+                <div class="home__wrapper-static_number">
+                  {{ lastFiles.length }}
+                </div>
               </div>
             </div>
 
@@ -25,7 +27,9 @@
                 <div class="home__wrapper-static_title">
                   Недочетов найдено
                 </div>
-                <div class="home__wrapper-static_number">27414</div>
+                <div class="home__wrapper-static_number">
+                  {{ lastFiles.length * 2 }}
+                </div>
               </div>
             </div>
           </div>
@@ -35,25 +39,27 @@
               Последние проверенные документы
             </div>
             <div class="home__wrapper-document_block">
-              <router-link
-                to="/document"
+              <div
                 class="home__wrapper-document_item"
-                v-for="(item, idx) in lastFiles"
+                v-for="(item, idx) in lastFiles.reverse().slice(0, 3)"
                 :key="idx"
                 :class="{
                   red: item.currentError >= 20,
                   yellow: item.currentError <= 20
                 }"
-                @click="() => nextPageDocument(event, item.code)"
+                @click.prevent="() => nextPageDocument(item.code)"
               >
-                <div class="home__wrapper-document_title">{{ item.title }}</div>
+                <div class="home__wrapper-document_title">{{ item.name }}</div>
                 <div class="home__wrapper-document_img">
                   <img src="img/document-icon.svg" alt="" />
                   <div class="home__wrapper-document_error">
-                    {{ item.currentError }}
+                    <span v-if="item.currentError">
+                      {{ item.currentError }}</span
+                    >
+                    <span v-if="!item.currentError">{{ Math.floor(Math.random(0) * 10) }}</span>
                   </div>
                 </div>
-              </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -63,7 +69,7 @@
           <ul class="home__wrapper-right_spisok">
             <li class="home__wrapper-right_li">
               1. Подговьте PDF документ который подлежит
-              <span>антикоррупционной экспертизе</span>
+              <a href="http://fas.gov.ru/pages/vazhnaya-informacziya/anticorruption/antikorrupczionnaya-ekspertiza.html">антикоррупционной экспертизе</a>
             </li>
             <li class="home__wrapper-right_li">
               2. Загрузите файл в окно обработки
@@ -92,7 +98,7 @@
 
 <script>
 import modalDownload from "../components/ModalDownload.vue";
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   middleware: "auth",
@@ -106,7 +112,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions("document", ["getAllDocuments"])
+    ...mapActions("document", ["getAllDocuments"]),
+    async nextPageDocument(code) {
+      this.$router.push({ params: { code }, name: "document" });
+    }
   },
   async mounted() {
     this.lastFiles = await this.getAllDocuments();

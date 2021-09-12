@@ -25,6 +25,7 @@ html {
   max-width: 1550px;
   padding: 0 15px;
   margin: 0 auto;
+  height: 100%;
 }
 
 button {
@@ -169,11 +170,16 @@ button {
     }
     &-document {
       margin-top: 50px;
+      overflow: hidden;
       &_title {
+        overflow: hidden;
+        width: 100%;
+        display: inline;
         font-size: 24px;
         line-height: 29px;
         font-weight: 500;
         color: #ffffff;
+        text-overflow: ellipsis;
       }
       &_block {
         background: linear-gradient(269.89deg, #b23ac6 5.21%, #603ed9 99.9%);
@@ -185,6 +191,9 @@ button {
       }
       &_item {
         text-align: center;
+        width: 30%;
+        cursor: pointer;
+        overflow: hidden;
       }
       &_img {
         margin-top: 10px;
@@ -207,8 +216,10 @@ button {
         font-size: 20px;
         color: #382f2f;
         border-radius: 50%;
-        bottom: -15px;
-        right: 10px;
+        bottom: 0px;
+        right: 0px;
+        background: #fff;
+        border: 1px solid black;
       }
       .red {
         .home__wrapper-document_error {
@@ -227,6 +238,27 @@ button {
       border-radius: 15px;
       height: 100%;
       padding: 51px 60px;
+      a {
+        color: #fff;
+        position: relative;
+        display: inline-block;
+        &:before {
+          width: 0%;
+          content: "";
+          background-color: rgba(0, 0, 0, 0.5);
+          height: 1px;
+          bottom: -2px;
+          left: 50%;
+          transform: translateX(-50%);
+          position: absolute;
+          transition: all .4s;
+        }
+        &:hover {
+            &:before {
+                width: 100%;
+            }
+        }
+      }
       &_spisok {
         margin-top: 60px;
         li {
@@ -334,12 +366,13 @@ button {
 
 .modal__filter {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 100%;
+  height: 100vh;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   filter: blur(-15px);
+  overflow: hidden;
 }
 
 .profile {
@@ -385,6 +418,7 @@ button {
         padding: 20px 13px;
         color: black;
         display: flex;
+        cursor: pointer;
         .red {
           background: #ff0c0c;
           color: #fff;
@@ -435,7 +469,7 @@ button {
         font-size: 20px;
         color: #382f2f;
         border-radius: 50%;
-        margin-left: 15px;
+        margin-left: 5px;
       }
     }
     &-right {
@@ -478,9 +512,10 @@ button {
     align-items: center;
     width: 100%;
     &-logo {
-      height: 60px;
-      img {
+      height: 70px;
+      svg {
         height: 100%;
+        margin-left: -20px;
       }
     }
     &-bar {
@@ -494,7 +529,7 @@ button {
         padding: 10px 20px 30px 20px;
         display: flex;
         flex-direction: column;
-        transition: all .4s;
+        transition: all 0.4s;
         pointer-events: none;
         opacity: 0;
       }
@@ -508,13 +543,13 @@ button {
         margin-bottom: 10px;
         text-align: left;
         &:last-child {
-            margin-bottom: 0;
+          margin-bottom: 0;
         }
       }
       &_name {
         font-size: 24px;
         line-height: 29px;
-        transition: all .4s;
+        transition: all 0.4s;
       }
       &_email {
         font-weight: 300;
@@ -522,13 +557,13 @@ button {
         line-height: 22px;
         margin-top: 5px;
         opacity: 0.7;
-        transition: all .4s;
+        transition: all 0.4s;
       }
       &_top {
         display: flex;
         align-items: center;
         padding: 5px 20px;
-        transition: all .4s;
+        transition: all 0.4s;
         border-radius: 15px 15px 0 0;
       }
       &_right {
@@ -567,16 +602,73 @@ button {
     pointer-events: all;
   }
   .header__wrapper-bar_top {
-      background-color: #fff;
+    background-color: #fff;
   }
   .header__wrapper-bar_name {
-      color: black;
+    color: black;
   }
   .header__wrapper-bar_email {
-      color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.5);
   }
 }
 
 .document__wrapper-error {
-    color: #fff;
+  color: #fff;
+}
+
+.document {
+  padding: 20px 0;
+  min-height: 300px;
+  .container {
+    min-height: 300px;
+  }
+  &__wrapper {
+    min-height: 300px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .dock {
+      width: 100%;
+      border-radius: 15px;
+      padding: 20px 50px;
+    }
+    &-left {
+      width: 70%;
+    }
+    &-right {
+      width: 28%;
+      background: linear-gradient(269.89deg, #b23ac6 5.21%, #603ed9 99.9%);
+      border-radius: 15px;
+      padding: 20px;
+      color: #fff;
+      &_number {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        span {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #fff;
+          border: 1px solid black;
+          margin-left: 10px;
+          color: black;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      &_spisok {
+        margin-top: 30px;
+        li {
+          margin-bottom: 10px;
+          font-size: 24px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
 }

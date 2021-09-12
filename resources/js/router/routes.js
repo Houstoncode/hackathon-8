@@ -16,8 +16,9 @@ export default [
     component: page("profile.vue")
   },
   {
-    path: "/document",
+    path: "/document/:code",
     name: "document",
+    props: true,
     component: page("document.vue")
   },
   { path: "*", component: page("errors/404.vue") }
