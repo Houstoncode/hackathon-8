@@ -6,7 +6,7 @@
         <div class="dock"  v-if="documentHTML" v-html="documentHTML"></div>
       </div>
       <div class="document__wrapper-right">
-
+    
       </div>
     </div>
   </section>
