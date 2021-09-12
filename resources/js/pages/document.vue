@@ -18,6 +18,14 @@
             <li>4. Правок акт 15</li>
           </ul>
         </div>
+
+        <a
+          href="img/file.pdf"
+          download=""
+          class="document__wrapper-right_download"
+          >Скачать итоговый <br />
+          отчет</a
+        >
       </div>
     </div>
   </section>
